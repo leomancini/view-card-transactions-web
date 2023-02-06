@@ -1,4 +1,3 @@
-<?php require('secrets.php'); ?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -11,7 +10,7 @@
         <?php
             $PATH = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
-            $transactionsRequest = curl_init($PATH."/process-card-transactions-api/admin/viewTransactions?password=".$SECRETS['PASSWORD']);
+            $transactionsRequest = curl_init($PATH."/process-card-transactions-api/admin/transactions?password=".$_GET['password']);
             curl_setopt($transactionsRequest, CURLOPT_RETURNTRANSFER, true);
             $transactionsResponse = curl_exec($transactionsRequest);
             $transactions = json_decode($transactionsResponse, true);
